@@ -1,0 +1,12 @@
+.even {
+  color: green
+}
+
+.odd {
+  color: red
+}
+
+.bold {
+  font-size: 20px;
+  font-weight: 600;
+}
