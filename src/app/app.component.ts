@@ -1,15 +1,23 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {Test1Component} from './test1/test1.component'
-import {Test2Component} from './test2/test2.component'
+import {Component} from '@angular/core'
+import {RouterOutlet} from '@angular/router'
+
+interface IUser {
+  age: number,
+  name: string
+}
 
 @Component({
-  selector: 'app-root',
+  selector: 'proj-root',
   standalone: true,
-  imports: [RouterOutlet, Test1Component, Test2Component],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Angular_Project';
+  appTitle = 'Angular_Project'
+
+  user: IUser = {
+    age: 25,
+    name: 'Bob'
+  }
 }
