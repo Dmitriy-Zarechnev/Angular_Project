@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
 import {ChildComponent} from './child/child.component'
-import {JsonPipe} from '@angular/common'
+import {JsonPipe, NgForOf} from '@angular/common'
 
 // export interface Address {
 //   city: string,
@@ -8,19 +8,49 @@ import {JsonPipe} from '@angular/common'
 //   house: number
 // }
 
+interface Lesson {
+  id: number,
+  title: string,
+  weekGrades: WeekGrade[]
+}
+
+interface WeekGrade {
+  id: number,
+  gradeItem: number
+}
+
 @Component({
   selector: 'proj-parent',
   standalone: true,
-  imports: [ChildComponent, JsonPipe],
+  imports: [ChildComponent, JsonPipe, NgForOf],
   templateUrl: './parent.component.html',
   styleUrl: './parent.component.css'
 })
 export class ParentComponent {
 
-  grades: string[] = ['math: 5', 'english: 3']
+  lessons: Lesson[] = [
+    {
+      id: 0,
+      title: 'Math',
+      weekGrades: [
+        {id: 0, gradeItem: 5},
+        {id: 1, gradeItem: 4},
+        {id: 2, gradeItem: 5}
+      ]
+    },
+    {
+      id: 1,
+      title: 'Chemistry',
+      weekGrades: [
+        {id: 0, gradeItem: 3},
+        {id: 1, gradeItem: 5},
+        {id: 2, gradeItem: 4}
+      ]
+    }
+  ]
 
   getGrade(grade: string) {
-    this.grades.push(grade)
+    //this.grades.push(grade)
   }
 }
 

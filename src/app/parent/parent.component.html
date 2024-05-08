@@ -1,7 +1,20 @@
 <div>
   <!--  <h1>Parent: math score - {{math}}  physics score - {{physics}}</h1>-->
   <proj-child (sendGradeEvent)="getGrade($event)"></proj-child>
-  <div>{{ grades| json }}</div>
+  <!--  <div *ngFor="let el of lessons; index as i">{{i}} {{ el }}</div>-->
+  <div *ngFor="let lesson of lessons">
+    <div>
+      <h3>{{ lesson.title }}</h3>
+      <div>
+        <h4>weekGrades
+          <div *ngFor="let el of lesson.weekGrades">
+            {{el.gradeItem}}
+          </div>
+        </h4>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <!--<div>-->
