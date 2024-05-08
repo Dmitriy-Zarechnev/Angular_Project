@@ -1,11 +1,14 @@
-<input type="text" [(ngModel)]="value">
+<!--<h1 [ngClass]="'red black'" >Lorem50</h1>-->
+<h1 [ngClass]="{black:isSuccess, red:!isSuccess, yellow:isSuccess}" >Lorem50</h1>
 
-<div [ngSwitch]="value">
-  <div *ngSwitchCase="'1'"> one</div>
-  <div *ngSwitchCase="'2'"> two</div>
-  <div *ngSwitchCase="'3'"> three</div>
-  <div *ngSwitchDefault> Unknown</div>
-</div>
+<!--<input type="text" [(ngModel)]="value">-->
+
+<!--<div [ngSwitch]="value">-->
+<!--  <div *ngSwitchCase="'1'"> one</div>-->
+<!--  <div *ngSwitchCase="'2'"> two</div>-->
+<!--  <div *ngSwitchCase="'3'"> three</div>-->
+<!--  <div *ngSwitchDefault> Unknown</div>-->
+<!--</div>-->
 <!--<div *ngIf="isLoading">-->
 <!--  <h2>Loading ...</h2>-->
 <!--</div>-->

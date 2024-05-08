@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
 import {ChildComponent} from './child/child.component'
-import {NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common'
+import {NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common'
 import {FormsModule} from '@angular/forms'
 
 // export interface Address {
@@ -23,14 +23,23 @@ import {FormsModule} from '@angular/forms'
 @Component({
   selector: 'proj-parent',
   standalone: true,
-  imports: [ChildComponent, FormsModule, NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [ChildComponent, NgClass],
   templateUrl: './parent.component.html',
   styleUrl: './parent.component.css'
 })
-
 export class ParentComponent {
-  value=''
+  isSuccess = true
+
+  constructor() {
+    setTimeout(() => {
+      this.isSuccess = false
+    }, 2000)
+  }
 }
+
+// export class ParentComponent {
+//   value=''
+// }
 // export class ParentComponent {
 //   constructor() {
 //     setTimeout(()=>{
