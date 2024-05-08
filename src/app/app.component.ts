@@ -1,6 +1,7 @@
 import {Component} from '@angular/core'
 import {RouterOutlet} from '@angular/router'
 import {FormsModule} from '@angular/forms'
+import {ParentComponent} from './parent/parent.component'
 
 // interface IUser {
 //   age: number,
@@ -10,15 +11,19 @@ import {FormsModule} from '@angular/forms'
 @Component({
   selector: 'proj-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule],
+  imports: [RouterOutlet, FormsModule,ParentComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 
 export class AppComponent {
-  appTitle = 'Angular'
-  text = 'start'
+
 }
+
+// export class AppComponent {
+//   appTitle = 'Angular'
+//   text = 'start'
+// }
 
 // export class AppComponent {
 //   appTitle = 'Angular'
