@@ -1,6 +1,7 @@
 import {Component} from '@angular/core'
 import {ChildComponent} from './child/child.component'
-import {JsonPipe, NgForOf} from '@angular/common'
+import {NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common'
+import {FormsModule} from '@angular/forms'
 
 // export interface Address {
 //   city: string,
@@ -8,51 +9,62 @@ import {JsonPipe, NgForOf} from '@angular/common'
 //   house: number
 // }
 
-interface Lesson {
-  id: number,
-  title: string,
-  weekGrades: WeekGrade[]
-}
-
-interface WeekGrade {
-  id: number,
-  gradeItem: number
-}
+// interface Lesson {
+//   id: number,
+//   title: string,
+//   weekGrades: WeekGrade[]
+// }
+//
+// interface WeekGrade {
+//   id: number,
+//   gradeItem: number
+// }
 
 @Component({
   selector: 'proj-parent',
   standalone: true,
-  imports: [ChildComponent, JsonPipe, NgForOf],
+  imports: [ChildComponent, FormsModule, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './parent.component.html',
   styleUrl: './parent.component.css'
 })
+
 export class ParentComponent {
-
-  lessons: Lesson[] = [
-    {
-      id: 0,
-      title: 'Math',
-      weekGrades: [
-        {id: 0, gradeItem: 5},
-        {id: 1, gradeItem: 4},
-        {id: 2, gradeItem: 5}
-      ]
-    },
-    {
-      id: 1,
-      title: 'Chemistry',
-      weekGrades: [
-        {id: 0, gradeItem: 3},
-        {id: 1, gradeItem: 5},
-        {id: 2, gradeItem: 4}
-      ]
-    }
-  ]
-
-  getGrade(grade: string) {
-    //this.grades.push(grade)
-  }
+  value=''
 }
+// export class ParentComponent {
+//   constructor() {
+//     setTimeout(()=>{
+//       this.isLoading=false
+//     },2000)
+//   }
+//
+//   isLoading = true
+//
+//   lessons: Lesson[] = [
+//     {
+//       id: 0,
+//       title: 'Math',
+//       weekGrades: [
+//         {id: 0, gradeItem: 5},
+//         {id: 1, gradeItem: 4},
+//         {id: 2, gradeItem: 5}
+//       ]
+//     },
+//     {
+//       id: 1,
+//       title: 'Chemistry',
+//       weekGrades: [
+//         {id: 0, gradeItem: 3},
+//         {id: 1, gradeItem: 5},
+//         {id: 2, gradeItem: 4}
+//       ]
+//     }
+//   ]
+//
+//   getGrade(grade: string) {
+//     //this.grades.push(grade)
+//   }
+// }
 
 // export class ParentComponent {
 //   name = 'Sam'

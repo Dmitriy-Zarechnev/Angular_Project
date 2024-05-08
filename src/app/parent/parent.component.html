@@ -1,21 +1,35 @@
-<div>
-  <!--  <h1>Parent: math score - {{math}}  physics score - {{physics}}</h1>-->
-  <proj-child (sendGradeEvent)="getGrade($event)"></proj-child>
-  <!--  <div *ngFor="let el of lessons; index as i">{{i}} {{ el }}</div>-->
-  <div *ngFor="let lesson of lessons">
-    <div>
-      <h3>{{ lesson.title }}</h3>
-      <div>
-        <h4>weekGrades
-          <div *ngFor="let el of lesson.weekGrades">
-            {{el.gradeItem}}
-          </div>
-        </h4>
-      </div>
-    </div>
+<input type="text" [(ngModel)]="value">
 
-  </div>
+<div [ngSwitch]="value">
+  <div *ngSwitchCase="'1'"> one</div>
+  <div *ngSwitchCase="'2'"> two</div>
+  <div *ngSwitchCase="'3'"> three</div>
+  <div *ngSwitchDefault> Unknown</div>
 </div>
+<!--<div *ngIf="isLoading">-->
+<!--  <h2>Loading ...</h2>-->
+<!--</div>-->
+
+
+<!--  <h1>Parent: math score - {{math}}  physics score - {{physics}}</h1>-->
+<!--  <proj-child (sendGradeEvent)="getGrade($event)"></proj-child>-->
+<!--  <div *ngFor="let el of lessons; index as i">{{i}} {{ el }}</div>-->
+<!--<ng-container *ngIf="!isLoading">-->
+<!--  <div *ngFor="let lesson of lessons">-->
+<!--    <div>-->
+<!--      <h3>{{ lesson.title }}</h3>-->
+<!--      <div>-->
+<!--        <h4>weekGrades-->
+<!--          <div *ngFor="let el of lesson.weekGrades">-->
+<!--            {{ el.gradeItem }}-->
+<!--          </div>-->
+<!--        </h4>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</ng-container>-->
+
 
 <!--<div>-->
 <!--  <h1>Parent: {{ name }} {{ surname }} from {{ address.city }} on {{ address.street }} street</h1>-->
