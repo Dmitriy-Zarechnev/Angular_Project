@@ -1,18 +1,33 @@
-import {Component, Input} from '@angular/core'
-import {Address} from '../parent.component'
+import {Component, EventEmitter, Output} from '@angular/core'
+import {FormsModule} from '@angular/forms'
+
 
 @Component({
   selector: 'proj-child',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './child.component.html',
   styleUrl: './child.component.css'
 })
 
 export class ChildComponent {
-  name = 'Bob'
 
 
-  @Input() surname?: string
-  @Input() address?: Address
+  @Output() sendGradeEvent = new EventEmitter<string>()
+
+  inputGrade = ''
+
+  sendGradeHandler() {
+    this.sendGradeEvent.emit(this.inputGrade)
+  }
 }
+
+// export class ChildComponent {
+//   name = 'Bob'
+//
+//
+//   @Input() surname?: string
+//   @Input() address?: Address
+// }
