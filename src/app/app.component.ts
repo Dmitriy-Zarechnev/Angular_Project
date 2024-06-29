@@ -3,6 +3,7 @@ import {RouterOutlet} from '@angular/router'
 import {FormsModule} from '@angular/forms'
 import {ParentComponent} from './parent/parent.component'
 import {FruitsComponent} from './fruits/fruits.component'
+import {ValueService} from './services/value.service'
 
 // interface IUser {
 //   age: number,
@@ -18,6 +19,15 @@ import {FruitsComponent} from './fruits/fruits.component'
 })
 
 export class AppComponent {
+
+  valueComp = 0
+
+  constructor(private valueService: ValueService) {
+  }
+
+  ngOnInit(): void {
+    this.valueComp = this.valueService.value
+  }
 
 }
 

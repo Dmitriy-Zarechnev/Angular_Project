@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
 import {ChildComponent} from './child/child.component'
-import {NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common'
+import {DatePipe, NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault, SlicePipe, UpperCasePipe} from '@angular/common'
 import {FormsModule} from '@angular/forms'
 
 // export interface Address {
@@ -24,18 +24,24 @@ import {FormsModule} from '@angular/forms'
 @Component({
   selector: 'proj-parent',
   standalone: true,
-  imports: [ChildComponent, NgClass],
+  imports: [ChildComponent, NgClass, UpperCasePipe, SlicePipe, DatePipe],
   templateUrl: './parent.component.html',
   styleUrl: './parent.component.css'
 })
 export class ParentComponent {
-  isSuccess = true
 
-  constructor() {
-    setTimeout(() => {
-      this.isSuccess = false
-    }, 2000)
-  }
+
+  title ='Lorem sdfds'
+  url ='http://localhost:3000/'
+  date =new Date(2022, 5, 6, 10)
+
+  // isSuccess = true
+  //
+  // constructor() {
+  //   setTimeout(() => {
+  //     this.isSuccess = false
+  //   }, 2000)
+  // }
 }
 
 // export class ParentComponent {
