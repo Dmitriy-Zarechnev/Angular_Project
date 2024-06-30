@@ -5,10 +5,6 @@ import {ParentComponent} from './parent/parent.component'
 import {FruitsComponent} from './fruits/fruits.component'
 import {ValueService} from './services/value.service'
 
-// interface IUser {
-//   age: number,
-//   name: string
-// }
 
 @Component({
   selector: 'proj-root',
