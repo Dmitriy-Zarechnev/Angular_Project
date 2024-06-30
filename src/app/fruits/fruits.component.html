@@ -1,8 +1,0 @@
-<div>
-  <div *ngFor="let fruit of fruits; even as even; odd as odd">
-    <div [ngClass]="{even:even, odd:odd, bold:fruit.price>15}">
-      {{ fruit.name }} cost {{ fruit.price }}
-    </div>
-  </div>
-  <button (click)="priceLessThenSeven()">More then 7</button>
-</div>
