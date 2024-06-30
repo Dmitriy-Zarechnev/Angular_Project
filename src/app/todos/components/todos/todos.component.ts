@@ -1,4 +1,7 @@
 import {Component} from '@angular/core'
+import {TodosService} from '../../services/todos.service'
+import {Observable} from 'rxjs'
+import {Todo} from '../../models/todos.models'
 
 @Component({
   selector: 'tl-todos',
@@ -7,9 +10,14 @@ import {Component} from '@angular/core'
 })
 
 export class TodosComponent {
-  constructor() {
+
+  todos$?: Observable<Todo[]>
+
+  constructor(private todosService: TodosService) {
   }
 
   ngOnInit(): void {
+    this.todos$ = this.todosService.todos$
+    this.todosService.getTodos()
   }
 }
