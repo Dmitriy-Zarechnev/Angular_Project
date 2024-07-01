@@ -6,6 +6,7 @@
       <h3 (dblclick)="activateEditModeHandler()">{{ todo.title }}</h3>
     </ng-template>
 
-    <button (click)="deleteTodoHandler()">-</button>
+    <button (click)="deleteTodoHandler()">💔</button>
   </div>
+  <tl-tasks [todoId]="todo.id"></tl-tasks>
 </div>
