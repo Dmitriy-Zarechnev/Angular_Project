@@ -12,6 +12,7 @@ import {Todo} from '../../models/todos.models'
 export class TodosComponent {
 
   todos$?: Observable<Todo[]>
+  todoTitle = ''
 
   constructor(private todosService: TodosService) {
   }
@@ -19,5 +20,10 @@ export class TodosComponent {
   ngOnInit(): void {
     this.todos$ = this.todosService.todos$
     this.todosService.getTodos()
+  }
+
+  addTodoHandler() {
+    this.todosService.addTodo(this.todoTitle)
+    this.todoTitle = ''
   }
 }
