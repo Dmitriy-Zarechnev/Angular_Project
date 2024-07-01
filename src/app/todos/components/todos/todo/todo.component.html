@@ -1,1 +1,6 @@
-<div class="box">{{ todo.title }}</div>
+<div class="box">
+  <div class="todo-header">
+    <h3>{{ todo.title }}</h3>
+    <button (click)="deleteTodoHandler()">-</button>
+  </div>
+</div>

@@ -26,4 +26,8 @@ export class TodosComponent {
     this.todosService.addTodo(this.todoTitle)
     this.todoTitle = ''
   }
+
+  deleteTodo(todoId: string) {
+    this.todosService.deleteTodo(todoId)
+  }
 }
