@@ -1,7 +1,8 @@
 import {Component} from '@angular/core'
 import {TodosService} from '../../services/todos.service'
 import {Observable} from 'rxjs'
-import {Todo} from '../../models/todos.models'
+import {EditTodoTitle, Todo} from '../../models/todos.models'
+
 
 @Component({
   selector: 'tl-todos',
@@ -33,7 +34,7 @@ export class TodosComponent {
     this.todosService.deleteTodo(todoId)
   }
 
-  editTitle(data: { todoId: string, title: string }) {
+  editTitle(data: EditTodoTitle) {
     this.todosService.editTodoTitle(data)
   }
 }

@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core'
 import {TasksService} from '../../../../services/tasks.service'
 import {map, Observable} from 'rxjs'
-import {Task} from '../../../../models/task.models'
+import {DeleteTask, Task} from '../../../../models/task.models'
 
 @Component({
   selector: 'tl-tasks',
@@ -30,5 +30,9 @@ export class TasksComponent {
   addTaskHandler() {
     this.tasksService.addTask({todoId: this.todoId, title: this.taskTitle})
     this.taskTitle = ''
+  }
+
+  deleteTask(data: DeleteTask) {
+    this.tasksService.deleteTask(data)
   }
 }

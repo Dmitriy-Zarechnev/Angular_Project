@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core'
 import {HttpClient} from '@angular/common/http'
 import {environment} from '../../../enviroments/environment'
 import {BehaviorSubject, map} from 'rxjs'
-import {Todo} from '../models/todos.models'
+import {EditTodoTitle, Todo} from '../models/todos.models'
 import {CommonResponse} from '../../core/models/core.models'
 
 @Injectable({
@@ -49,7 +49,7 @@ export class TodosService {
       })
   }
 
-  editTodoTitle(data: { todoId: string, title: string }) {
+  editTodoTitle(data: EditTodoTitle) {
     this.http
       .put<CommonResponse>(`${environment.baseUrl}/todo-lists${data.todoId}`, {title: data.title})
       .pipe(map(() => {

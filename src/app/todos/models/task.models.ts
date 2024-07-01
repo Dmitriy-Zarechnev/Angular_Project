@@ -22,3 +22,17 @@ export interface GetTasksResponse {
 export interface DomainTask {
   [key: string]: Task[]
 }
+
+interface UpdateTask {
+  todoId: string,
+  taskId: string,
+  title: string
+}
+
+export interface DeleteTask extends Omit<UpdateTask, 'title'> {
+}
+
+export interface AddTask extends Omit<UpdateTask, 'taskId'> {
+}
+
+

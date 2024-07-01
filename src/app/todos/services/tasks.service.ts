@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core'
 import {HttpClient} from '@angular/common/http'
 import {environment} from '../../../enviroments/environment'
 import {BehaviorSubject, map} from 'rxjs'
-import {DomainTask, GetTasksResponse, Task} from '../models/task.models'
+import {AddTask, DeleteTask, DomainTask, GetTasksResponse, Task} from '../models/task.models'
 import {CommonResponse} from '../../core/models/core.models'
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class TasksService {
       })
   }
 
-  addTask(data: { todoId: string, title: string }) {
+  addTask(data: AddTask) {
     return this.http
       .post<CommonResponse<{ item: Task }>>(`${environment.baseUrl}/todo-lists/${data.todoId}/tasks`,
         {title: data.title})
@@ -41,4 +42,18 @@ export class TasksService {
       }))
       .subscribe((tasks) => this.tasks$.next(tasks))
   }
+
+  deleteTask(data: DeleteTask) {
+    return this.http
+      .delete<CommonResponse>(`${environment.baseUrl}/todo-lists/${data.todoId}/tasks/${data.taskId}`)
+      .pipe(map(() => {
+        const stateTasks = this.tasks$.getValue()
+
+        stateTasks[data.todoId] = stateTasks[data.todoId].filter(task => task.id !== data.taskId)
+        return stateTasks
+      }))
+      .subscribe((tasks) => this.tasks$.next(tasks))
+  }
+
+
 }
