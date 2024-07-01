@@ -8,14 +8,14 @@ import {CoreModule} from './core/core.module'
 import {HttpClientModule} from '@angular/common/http'
 
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule, AppRoutingModule, AuthModule, TodosModule, CoreModule, HttpClientModule
+    BrowserModule,  AuthModule, TodosModule, CoreModule, HttpClientModule, AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
