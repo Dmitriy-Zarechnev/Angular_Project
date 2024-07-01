@@ -30,4 +30,8 @@ export class TodosComponent {
   deleteTodo(todoId: string) {
     this.todosService.deleteTodo(todoId)
   }
+
+  editTitle(data:{todoId: string, title: string}) {
+    this.todosService.editTodoTitle(data)
+  }
 }
