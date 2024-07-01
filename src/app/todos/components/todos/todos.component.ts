@@ -18,7 +18,9 @@ export class TodosComponent {
   }
 
   ngOnInit(): void {
+    // subscribe
     this.todos$ = this.todosService.todos$
+
     this.todosService.getTodos()
   }
 
@@ -31,7 +33,7 @@ export class TodosComponent {
     this.todosService.deleteTodo(todoId)
   }
 
-  editTitle(data:{todoId: string, title: string}) {
+  editTitle(data: { todoId: string, title: string }) {
     this.todosService.editTodoTitle(data)
   }
 }

@@ -17,13 +17,14 @@ export class TodosService {
   }
 
   getTodos() {
-    this.http.get<Todo[]>(`${environment.baseUrl}/todo-lists`).subscribe((todos) => {
-      this.todos$.next(todos)
-    })
+    this.http
+      .get<Todo[]>(`${environment.baseUrl}/todo-lists`)
+      .subscribe((todos) => this.todos$.next(todos))
   }
 
   addTodo(title: string) {
-    this.http.post<CommonResponse<{ item: Todo }>>(`${environment.baseUrl}/todo-lists`, {title})
+    this.http
+      .post<CommonResponse<{ item: Todo }>>(`${environment.baseUrl}/todo-lists`, {title})
       .pipe(map(res => {
         const stateTodos = this.todos$.getValue()
         const newTodo = res.data.item
@@ -36,7 +37,8 @@ export class TodosService {
   }
 
   deleteTodo(todoId: string) {
-    this.http.delete<CommonResponse>(`${environment.baseUrl}/todo-lists/${todoId}`)
+    this.http
+      .delete<CommonResponse>(`${environment.baseUrl}/todo-lists/${todoId}`)
       .pipe(map(() => {
         const stateTodos = this.todos$.getValue()
 
@@ -48,7 +50,8 @@ export class TodosService {
   }
 
   editTodoTitle(data: { todoId: string, title: string }) {
-    this.http.put<CommonResponse>(`${environment.baseUrl}/todo-lists${data.todoId}`, {title: data.title})
+    this.http
+      .put<CommonResponse>(`${environment.baseUrl}/todo-lists${data.todoId}`, {title: data.title})
       .pipe(map(() => {
         const stateTodos = this.todos$.getValue()
 
