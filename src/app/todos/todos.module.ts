@@ -11,7 +11,7 @@ import {TaskComponent} from './components/todos/todo/tasks/task/task.component'
 @NgModule({
   declarations: [TodosComponent, TodoComponent, TasksComponent, TaskComponent],
   imports: [
-    CommonModule, ToDosRoutingModule, FormsModule
+    CommonModule, FormsModule, ToDosRoutingModule
   ]
 })
 export class TodosModule {

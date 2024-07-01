@@ -5,7 +5,7 @@ import {TodosComponent} from './components/todos/todos.component'
 export const routes: Routes = [{path: '', component: TodosComponent, pathMatch: 'full'}]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 

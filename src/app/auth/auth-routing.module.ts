@@ -5,7 +5,7 @@ import {LoginComponent} from './components/login/login.component'
 export const routes: Routes = [{path: 'login', component: LoginComponent}]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AuthRoutingModule {
