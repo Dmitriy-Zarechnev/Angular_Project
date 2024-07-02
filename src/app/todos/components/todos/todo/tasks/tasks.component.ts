@@ -11,7 +11,7 @@ import {DeleteTask, Task, UpdateTaskModel} from '../../../../models/task.models'
 export class TasksComponent {
   @Input() todoId!: string
 
-  // ---- Добавили tasks в state ----
+  // ---- Достали tasks из state ----
   tasks$?: Observable<Task[]>
 
   // ---- Task title при создании ----

@@ -12,10 +12,10 @@ import {EditTodoTitle, Todo} from '../../models/todos.models'
 
 export class TodosComponent {
 
-  // ---- Добавили todos в state ----
+  // ---- Достали todos из state ----
   todos$?: Observable<Todo[]>
 
-  // ---- Todo title при создании ----
+  // ---- Todos title при создании ----
   todoTitle = ''
 
   // ---- Подключили service для работы с todos ----
@@ -30,18 +30,18 @@ export class TodosComponent {
     this.todosService.getTodos()
   }
 
-  // ---- Отправили новый todo на сервер ----
+  // ---- Отправили новый todos на сервер ----
   addTodoHandler() {
     this.todosService.addTodo(this.todoTitle)
     this.todoTitle = ''
   }
 
-  // ---- Удалили todo на сервере ----
+  // ---- Удалили todos на сервере ----
   deleteTodo(todoId: string) {
     this.todosService.deleteTodo(todoId)
   }
 
-  // ---- Изменили todo на сервере ----
+  // ---- Изменили todos на сервере ----
   editTitle(data: EditTodoTitle) {
     this.todosService.editTodoTitle(data)
   }

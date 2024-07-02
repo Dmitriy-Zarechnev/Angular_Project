@@ -11,12 +11,14 @@ import {CommonResponse} from '../../core/models/core.models'
 })
 
 export class TasksService {
+  // ---- Добавили tasks в state ----
   tasks$ = new BehaviorSubject<DomainTask>({}
   )
 
   constructor(private http: HttpClient) {
   }
 
+  // ---- Получили tasks с сервера ----
   getTasks(todoId: string) {
     return this.http
       .get<GetTasksResponse>(`${environment.baseUrl}/todo-lists/${todoId}/tasks`)
@@ -29,6 +31,7 @@ export class TasksService {
       })
   }
 
+  // ---- Добавили новую task на сервер ----
   addTask(data: AddTask) {
     return this.http
       .post<CommonResponse<{ item: Task }>>(`${environment.baseUrl}/todo-lists/${data.todoId}/tasks`,
@@ -43,6 +46,7 @@ export class TasksService {
       .subscribe((tasks) => this.tasks$.next(tasks))
   }
 
+  // ---- Удалили task на сервере ----
   deleteTask(data: DeleteTask) {
     return this.http
       .delete<CommonResponse>(`${environment.baseUrl}/todo-lists/${data.todoId}/tasks/${data.taskId}`)
@@ -55,6 +59,7 @@ export class TasksService {
       .subscribe((tasks) => this.tasks$.next(tasks))
   }
 
+  // ---- Заменили task на сервере ----
   updateTask(data: UpdateTaskModel) {
     return this.http
       .put<CommonResponse>(`${environment.baseUrl}/todo-lists/${data.todoId}/tasks/${data.taskId}`, data.model)

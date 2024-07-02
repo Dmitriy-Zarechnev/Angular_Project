@@ -10,18 +10,20 @@ import {CommonResponse} from '../../core/models/core.models'
 })
 
 export class TodosService {
-
+  // ---- Добавили todos в state ----
   todos$ = new BehaviorSubject<Todo[]>([])
 
   constructor(private http: HttpClient) {
   }
 
+  // ---- Получили todos с сервера ----
   getTodos() {
     this.http
       .get<Todo[]>(`${environment.baseUrl}/todo-lists`)
       .subscribe((todos) => this.todos$.next(todos))
   }
 
+  // ---- Добавили новый todos на сервер ----
   addTodo(title: string) {
     this.http
       .post<CommonResponse<{ item: Todo }>>(`${environment.baseUrl}/todo-lists`, {title})
@@ -36,6 +38,7 @@ export class TodosService {
       })
   }
 
+  // ---- Удалили todos на сервере ----
   deleteTodo(todoId: string) {
     this.http
       .delete<CommonResponse>(`${environment.baseUrl}/todo-lists/${todoId}`)
@@ -49,6 +52,7 @@ export class TodosService {
       })
   }
 
+  // ---- Заменили todos на сервере ----
   editTodoTitle(data: EditTodoTitle) {
     this.http
       .put<CommonResponse>(`${environment.baseUrl}/todo-lists${data.todoId}`, {title: data.title})

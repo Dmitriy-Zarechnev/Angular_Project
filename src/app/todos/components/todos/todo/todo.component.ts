@@ -11,13 +11,13 @@ export class TodoComponent {
   @Output() deleteTodoEvent = new EventEmitter<string>()
   @Output() editTodoEvent = new EventEmitter<EditTodoTitle>()
 
-  // ---- Mode для изменения todo ----
+  // ---- Mode для изменения todos ----
   isEditMode = false
 
-  // ---- Новый title для todo ----
+  // ---- Новый title для todos ----
   newTitle = ''
 
-  // ---- Отправили удаление todo родителю ----
+  // ---- Отправили удаление todos родителю ----
   deleteTodoHandler() {
     this.deleteTodoEvent.emit(this.todo.id)
   }
@@ -29,7 +29,7 @@ export class TodoComponent {
     this.newTitle = this.todo.title
   }
 
-  // ---- Отправили новый todo title родителю ----
+  // ---- Отправили новый todos title родителю ----
   editTitleHandler() {
     this.editTodoEvent.emit({todoId: this.todo.id, title: this.newTitle})
 
