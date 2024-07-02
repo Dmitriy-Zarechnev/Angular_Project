@@ -1,1 +1,49 @@
-<p>login works!</p>
+<div class="login-wrapper">
+  <h1>Login Page</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="form">
+
+    <!-- Email -->
+    <label>
+      Введите email
+      <input
+        type="text"
+        formControlName="email"
+        required
+        [ngClass]="{
+          'input-error': email!.invalid && (email!.dirty || email!.touched),
+          'input-success': email!.valid
+        }"
+      />
+    </label>
+    <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="error">
+      <div *ngIf="email!.errors?.['required']" class="error">Email is required!</div>
+      <div *ngIf="email!.errors?.['pattern']" class="error">Email is incorrect!</div>
+    </div>
+
+    <!-- Password -->
+    <label>
+      Введите пароль
+      <input
+        type="password"
+        formControlName="password"
+        required
+        [ngClass]="{
+          'input-error': password!.invalid && (password!.dirty || password!.touched),
+          'input-success': password!.valid
+        }"
+      />
+    </label>
+    <div *ngIf="password!.invalid && (password!.dirty || password!.touched)" class="error">
+      <div *ngIf="password!.errors?.['required']" class="error">Password is required!</div>
+      <div *ngIf="password!.errors?.['minlength']" class="error">
+        Password is to short (min 3 char)!
+      </div>
+    </div>
+
+    <!-- Remember Me -->
+    <label><input type="checkbox" formControlName="rememberMe"/>Remember me</label>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+  </form>
+</div>
