@@ -13,28 +13,33 @@ export class TaskComponent {
   @Output() deleteTaskEvent = new EventEmitter<DeleteTask>()
   @Output() updateTaskEvent = new EventEmitter<UpdateTaskModel>()
 
+  // ---- Присвоили значение enum ----
   taskStatus = TaskStatus
 
+  // ---- Новый title для task ----
   newTaskTitle = ''
+  // ---- Mode для изменения title ----
   editMode = false
 
+  // ---- Отправили удаление task родителю ----
   deleteTaskHandler() {
     this.deleteTaskEvent.emit({todoId: this.task.todoListId, taskId: this.task.id})
   }
 
-
+  // ---- Отправили новый status родителю ----
   changeTaskStatusHandler(event: MouseEvent) {
     const newStatus = (event.currentTarget as HTMLInputElement).checked
 
     this.changeTask({status: newStatus ? TaskStatus.completed : TaskStatus.active})
   }
 
-
+  // ---- Включаем Mode и записываем значение в input ----
   activateEditModeHandler() {
     this.editMode = true
     this.newTaskTitle = this.task.title
   }
 
+  // ---- Отправили новый task title родителю ----
   editTaskTitleHandler() {
     this.changeTask({title: this.newTaskTitle})
 
@@ -42,6 +47,7 @@ export class TaskComponent {
     this.editMode = false
   }
 
+  // ---- Общая функция для изменения task ----
   changeTask(patch: Partial<TaskModel>) {
     const model: TaskModel = {
       status: this.task.status,
