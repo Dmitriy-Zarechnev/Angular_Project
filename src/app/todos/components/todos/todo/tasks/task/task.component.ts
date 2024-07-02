@@ -15,6 +15,8 @@ export class TaskComponent {
 
   taskStatus = TaskStatus
 
+  newTaskTitle = ''
+  editMode = false
 
   deleteTaskHandler() {
     this.deleteTaskEvent.emit({todoId: this.task.todoListId, taskId: this.task.id})
@@ -35,5 +37,17 @@ export class TaskComponent {
     }
 
     this.updateTaskEvent.emit({todoId: this.task.todoListId, taskId: this.task.id, model})
+  }
+
+
+  activateEditModeHandler() {
+    this.editMode = true
+    this.newTaskTitle = this.task.title
+  }
+
+  editTaskTitleHandler() {
+    console.log(this.newTaskTitle)
+    this.newTaskTitle = ''
+    this.editMode = false
   }
 }
