@@ -1,4 +1,8 @@
-<input type="text" placeholder="Add new Task" [(ngModel)]="taskTitle" (keyup.enter)="addTaskHandler()">
+<input type="text"
+       placeholder="Add new Task"
+       [(ngModel)]="taskTitle" (keyup.enter)="addTaskHandler()"
+       class='input'
+>
 <tl-task *ngFor="let task of tasks$ | async"
          [task]="task"
          (deleteTaskEvent)="deleteTask($event)"
