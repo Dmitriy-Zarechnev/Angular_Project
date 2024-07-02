@@ -2,6 +2,7 @@ import {Component} from '@angular/core'
 import {TodosService} from '../../services/todos.service'
 import {Observable} from 'rxjs'
 import {DomainTodo, EditTodoTitle} from '../../models/todos.models'
+import {AuthService} from '../../../core/services/auth.service'
 
 
 @Component({
@@ -14,12 +15,11 @@ export class TodosComponent {
 
   // ---- Достали todos из state ----
   todos$?: Observable<DomainTodo[]>
-
   // ---- Todos title при создании ----
   todoTitle = ''
 
   // ---- Подключили service для работы с todos ----
-  constructor(private todosService: TodosService) {
+  constructor(private todosService: TodosService, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -44,5 +44,10 @@ export class TodosComponent {
   // ---- Изменили todos на сервере ----
   editTitle(data: EditTodoTitle) {
     this.todosService.editTodoTitle(data)
+  }
+
+  // ---- Log Out из приложения ----
+  logOutHandler() {
+    this.authService.logOut()
   }
 }

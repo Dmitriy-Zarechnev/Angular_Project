@@ -36,6 +36,6 @@ export class LoginComponent {
   // ---- Работа при submit ----
   onLoginSubmit() {
     const value = this.loginForm.value
-    console.log(value)
+    this.authService.logIn(value)
   }
 }
