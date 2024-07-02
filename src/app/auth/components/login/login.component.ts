@@ -1,5 +1,6 @@
 import {Component} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
+import {AuthService} from '../../../core/services/auth.service'
 
 @Component({
   selector: 'tl-login',
@@ -17,6 +18,10 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(3)]),
     rememberMe: new FormControl(false)
   })
+
+
+  constructor(private authService: AuthService) {
+  }
 
   // ---- Считали значение email ----
   get email() {
