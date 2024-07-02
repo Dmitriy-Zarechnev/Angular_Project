@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core'
+import {Component, Input, OnInit} from '@angular/core'
 import {TasksService} from '../../../../services/tasks.service'
 import {combineLatest, map, Observable} from 'rxjs'
 import {DeleteTask, Task, UpdateTaskModel} from '../../../../models/task.models'
@@ -10,7 +10,7 @@ import {TaskStatus} from '../../../../../core/enums/taskStatus.enum'
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent {
+export class TasksComponent implements OnInit {
   @Input() todoId!: string
 
   // ---- Достали tasks из state ----

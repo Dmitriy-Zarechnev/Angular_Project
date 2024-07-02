@@ -5,16 +5,30 @@ import {CommonResponse} from '../models/core.models'
 import {ResultCode} from '../enums/resultCode.enum'
 import {Router} from '@angular/router'
 
+
+export interface LogInRequestData {
+  email: string,
+  password: string,
+  rememberMe: boolean,
+}
+
+export interface MeResponse {
+  email: string,
+  id: number,
+  login: string
+}
+
 @Injectable()
 
 export class AuthService {
+  // ---- Проверка на logIn ----
+  isAuth = false
 
   constructor(private http: HttpClient, private router: Router) {
   }
 
-
   // ---- LogIn на сервере ----
-  logIn(data: any) {
+  logIn(data: Partial<LogInRequestData>) {
     this.http
       .post<CommonResponse<{ userId: number }>>(`${environment.baseUrl}/auth/login`, data)
       .subscribe((res) => {
@@ -38,9 +52,11 @@ export class AuthService {
   // ---- Me запрос c сервера ----
   me() {
     this.http
-      .get(`${environment.baseUrl}/auth/me`)
+      .get<CommonResponse<MeResponse>>(`${environment.baseUrl}/auth/me`)
       .subscribe((res) => {
-
+        if (res.resultCode === ResultCode.success) {
+          this.isAuth = true
+        }
       })
   }
 }

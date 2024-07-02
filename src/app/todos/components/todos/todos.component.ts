@@ -1,4 +1,4 @@
-import {Component} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {TodosService} from '../../services/todos.service'
 import {Observable} from 'rxjs'
 import {DomainTodo, EditTodoTitle} from '../../models/todos.models'
@@ -11,7 +11,7 @@ import {AuthService} from '../../../core/services/auth.service'
   styleUrls: ['./todos.component.css']
 })
 
-export class TodosComponent {
+export class TodosComponent implements OnInit {
 
   // ---- Достали todos из state ----
   todos$?: Observable<DomainTodo[]>

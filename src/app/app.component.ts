@@ -1,4 +1,5 @@
-import {Component} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
+import {AuthService} from './core/services/auth.service'
 
 @Component({
   selector: 'tl-root',
@@ -6,6 +7,13 @@ import {Component} from '@angular/core'
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private authService: AuthService) {
+  }
+
+  // ---- Сделали me запрос ----
+  ngOnInit() {
+    this.authService.me()
+  }
 }
 
