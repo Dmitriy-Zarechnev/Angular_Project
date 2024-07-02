@@ -29,10 +29,16 @@ interface UpdateTask {
   title: string
 }
 
+export interface TaskModel extends Omit<Task, 'id' | 'todoListId' | 'order' | 'addedDate'> {
+
+}
+
 export interface DeleteTask extends Omit<UpdateTask, 'title'> {
 }
 
 export interface AddTask extends Omit<UpdateTask, 'taskId'> {
 }
 
-
+export interface UpdateTaskModel extends Omit<UpdateTask, 'title'> {
+  model: TaskModel
+}

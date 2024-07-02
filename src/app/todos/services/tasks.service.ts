@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core'
 import {HttpClient} from '@angular/common/http'
 import {environment} from '../../../enviroments/environment'
 import {BehaviorSubject, map} from 'rxjs'
-import {AddTask, DeleteTask, DomainTask, GetTasksResponse, Task} from '../models/task.models'
+import {AddTask, DeleteTask, DomainTask, GetTasksResponse, Task, UpdateTaskModel} from '../models/task.models'
 import {CommonResponse} from '../../core/models/core.models'
 
 
@@ -36,8 +36,8 @@ export class TasksService {
       .pipe(map(res => {
         const stateTasks = this.tasks$.getValue()
         const newTask = res.data.item
-
         stateTasks[data.todoId] = [newTask, ...stateTasks[data.todoId]]
+
         return stateTasks
       }))
       .subscribe((tasks) => this.tasks$.next(tasks))
@@ -48,12 +48,26 @@ export class TasksService {
       .delete<CommonResponse>(`${environment.baseUrl}/todo-lists/${data.todoId}/tasks/${data.taskId}`)
       .pipe(map(() => {
         const stateTasks = this.tasks$.getValue()
-
         stateTasks[data.todoId] = stateTasks[data.todoId].filter(task => task.id !== data.taskId)
+
         return stateTasks
       }))
       .subscribe((tasks) => this.tasks$.next(tasks))
   }
 
+  updateTask(data: UpdateTaskModel) {
+    return this.http
+      .put<CommonResponse>(`${environment.baseUrl}/todo-lists/${data.todoId}/tasks/${data.taskId}`, data.model)
+      .pipe(map(() => {
+        const stateTasks = this.tasks$.getValue()
+        stateTasks[data.todoId] = stateTasks[data.todoId].map(task => task.id === data.taskId ? {
+          ...task,
+          ...data.model
+        } : task)
+
+        return stateTasks
+      }))
+      .subscribe((task) => this.tasks$.next(task))
+  }
 
 }
