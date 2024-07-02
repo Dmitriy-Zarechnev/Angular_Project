@@ -1,7 +1,7 @@
 import {Component} from '@angular/core'
 import {TodosService} from '../../services/todos.service'
 import {Observable} from 'rxjs'
-import {EditTodoTitle, Todo} from '../../models/todos.models'
+import {DomainTodo, EditTodoTitle} from '../../models/todos.models'
 
 
 @Component({
@@ -13,7 +13,7 @@ import {EditTodoTitle, Todo} from '../../models/todos.models'
 export class TodosComponent {
 
   // ---- Достали todos из state ----
-  todos$?: Observable<Todo[]>
+  todos$?: Observable<DomainTodo[]>
 
   // ---- Todos title при создании ----
   todoTitle = ''

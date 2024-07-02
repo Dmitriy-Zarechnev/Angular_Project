@@ -3,3 +3,15 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.completed {
+  background-color: orange;
+}
+
+.all {
+  background-color: greenyellow;
+}
+
+.active {
+  background-color: blue;
+}

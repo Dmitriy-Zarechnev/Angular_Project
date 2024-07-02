@@ -9,3 +9,9 @@ export interface Todo {
 
 export interface EditTodoTitle extends AddTask {
 }
+
+export interface DomainTodo extends Todo {
+  filter: FilterType
+}
+
+export type FilterType = 'all' | 'active' | 'completed'

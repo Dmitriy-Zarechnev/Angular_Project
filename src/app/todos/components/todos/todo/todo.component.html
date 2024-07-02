@@ -9,6 +9,8 @@
     <button (click)="deleteTodoHandler()">💔</button>
   </div>
   <tl-tasks [todoId]="todo.id"></tl-tasks>
-  <tl-todo-filter></tl-todo-filter>
+  <tl-todo-filter (changeFilterEvent)="changeFilter($event)"
+                  [filter]="todo.filter">
+  </tl-todo-filter>
   <tl-todo-footer [addedDate]="todo.addedDate"></tl-todo-footer>
 </div>
