@@ -4,25 +4,22 @@ import {environment} from '../../../enviroments/environment'
 import {CommonResponse} from '../models/core.models'
 import {ResultCode} from '../enums/resultCode.enum'
 import {Router} from '@angular/router'
+import {LogInRequestData, MeResponse} from '../models/auth.models'
 
-
-export interface LogInRequestData {
-  email: string,
-  password: string,
-  rememberMe: boolean,
-}
-
-export interface MeResponse {
-  email: string,
-  id: number,
-  login: string
-}
 
 @Injectable()
 
 export class AuthService {
   // ---- Проверка на logIn ----
   isAuth = false
+
+  // ---- Функции для работы AuthGuard ----
+  resolveAuthRequest: Function = () => {
+  }
+  authRequest = new Promise((resolve) => {
+    this.resolveAuthRequest = resolve
+  })
+
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -57,6 +54,7 @@ export class AuthService {
         if (res.resultCode === ResultCode.success) {
           this.isAuth = true
         }
+        this.resolveAuthRequest()
       })
   }
 }
