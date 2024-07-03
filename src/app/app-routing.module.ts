@@ -1,7 +1,7 @@
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router'
 import {NgModule} from '@angular/core'
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./todos/todos.module').then(n => n.TodosModule)
