@@ -24,5 +24,4 @@ export class NotificationService {
   clear() {
     this.notify$.next(null)
   }
-
 }

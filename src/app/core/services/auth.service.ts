@@ -6,6 +6,7 @@ import {ResultCode} from '../enums/resultCode.enum'
 import {Router} from '@angular/router'
 import {LogInRequestData, MeResponse} from '../models/auth.models'
 import {catchError, EMPTY} from 'rxjs'
+import {NotificationService} from './notification.service'
 
 
 @Injectable()
@@ -22,7 +23,7 @@ export class AuthService {
   })
 
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private notificationService: NotificationService) {
   }
 
   // ---- LogIn на сервере ----
@@ -33,6 +34,8 @@ export class AuthService {
       .subscribe((res) => {
         if (res.resultCode === ResultCode.success) {
           this.router.navigate(['/'])
+        } else {
+          this.notificationService.errorHandler(res.messages[0])
         }
       })
   }
@@ -57,6 +60,8 @@ export class AuthService {
       .subscribe((res) => {
         if (res.resultCode === ResultCode.success) {
           this.isAuth = true
+        } else {
+          this.notificationService.errorHandler(res.messages[0])
         }
         this.resolveAuthRequest()
       })
@@ -64,7 +69,7 @@ export class AuthService {
 
   // ---- Обработка ошибок ----
   private errorHandler(err: HttpErrorResponse) {
-    console.log(err.message)
+    this.notificationService.errorHandler(err.message)
     return EMPTY
   }
 }
