@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core'
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpErrorResponse} from '@angular/common/http'
 import {environment} from '../../../enviroments/environment'
 import {CommonResponse} from '../models/core.models'
 import {ResultCode} from '../enums/resultCode.enum'
 import {Router} from '@angular/router'
 import {LogInRequestData, MeResponse} from '../models/auth.models'
+import {catchError, EMPTY} from 'rxjs'
 
 
 @Injectable()
@@ -28,6 +29,7 @@ export class AuthService {
   logIn(data: Partial<LogInRequestData>) {
     this.http
       .post<CommonResponse<{ userId: number }>>(`${environment.baseUrl}/auth/login`, data)
+      .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe((res) => {
         if (res.resultCode === ResultCode.success) {
           this.router.navigate(['/'])
@@ -39,6 +41,7 @@ export class AuthService {
   logOut() {
     this.http
       .delete<CommonResponse>(`${environment.baseUrl}/auth/login`)
+      .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe((res) => {
         if (res.resultCode === ResultCode.success) {
           this.router.navigate(['/login'])
@@ -50,11 +53,18 @@ export class AuthService {
   me() {
     this.http
       .get<CommonResponse<MeResponse>>(`${environment.baseUrl}/auth/me`)
+      .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe((res) => {
         if (res.resultCode === ResultCode.success) {
           this.isAuth = true
         }
         this.resolveAuthRequest()
       })
+  }
+
+  // ---- Обработка ошибок ----
+  private errorHandler(err: HttpErrorResponse) {
+    console.log(err.message)
+    return EMPTY
   }
 }
